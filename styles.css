@@ -370,6 +370,9 @@ a {
   gap: 1px;
   background: var(--surface-2);
 }
+.pillar:nth-child(5) {
+  grid-column: span 2;
+}
 @media (min-width: 640px) {
   .pillars-grid {
     grid-template-columns: repeat(3, 1fr);
@@ -378,6 +381,9 @@ a {
 @media (min-width: 1024px) {
   .pillars-grid {
     grid-template-columns: repeat(5, 1fr);
+  }
+  .pillar:nth-child(5) {
+    grid-column: span 1;
   }
 }
 .pillar {
