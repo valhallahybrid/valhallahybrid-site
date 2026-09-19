@@ -169,41 +169,37 @@
         .hero {
             position: relative;
             display: flex;
-            align-items: center;
+            align-items: flex-end;
             justify-content: center;
-            padding: 40px 16px;
+            min-height: 94vh;
+            padding: 48px 16px 72px;
             overflow: hidden;
             background: var(--black);
         }
 
-        .hero-visual {
-            position: relative;
-            width: 100%;
-            max-width: 460px;
-            margin: 0 auto;
-        }
-
-        .hero-visual img.hero-bg-img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .hero-visual-btn {
+        .hero-bg-img {
             position: absolute;
-            left: 19%;
-            width: 62%;
-            top: 46.3%;
-            display: block;
-            transition: transform 0.2s ease;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 15%;
+            z-index: 0;
         }
 
-        .hero-visual-btn:hover { transform: translateY(-2px); }
+        .hero-scrim {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.99) 0%, rgba(0, 0, 0, 0.97) 48%, rgba(0, 0, 0, 0.2) 68%, rgba(0, 0, 0, 0.32) 100%);
+            z-index: 1;
+        }
 
-        .hero-visual-btn img {
+        .hero-content {
+            position: relative;
+            z-index: 2;
             width: 100%;
-            height: auto;
-            display: block;
+            max-width: 640px;
+            text-align: center;
         }
 
         .sr-only {
@@ -834,8 +830,8 @@
         }
 
         @media (max-width: 640px) {
-            .hero { padding: 60px 16px 48px; }
-            .hero-splash { max-width: 260px; }
+            .hero { min-height: 100vh; padding: 40px 16px 56px; }
+            .hero-content { max-width: 100%; }
             .price-card { padding: 48px 24px; }
             .footer-inner { flex-direction: column; gap: 16px; text-align: center; }
             .leader { padding: 80px 0; }
@@ -849,14 +845,18 @@
          HERO — squad image + emotional headline
          ════════════════════════════════════════════════════ -->
     <section class="hero" id="top">
-        <div class="hero-visual">
-            <img src="assets/join/hero-bg.jpg" alt="Valhalla Hybrid. Train Like You Mean It. Hybrid strength, running, and conditioning built into one progression system." class="hero-bg-img">
-            <a href="https://play.google.com/store/apps/details?id=com.valhallahybr.app" target="_blank" rel="noopener" class="hero-visual-btn" aria-label="Download the app on Google Play — $14.99 per month">
-                <img src="assets/join/btn-download.png" alt="">
-            </a>
+        <img src="assets/join/hero-bg-v2.jpg" alt="" class="hero-bg-img">
+        <div class="hero-scrim"></div>
+        <div class="hero-content">
+            <h1 class="hero-headline">Train Like<br>You Mean It.</h1>
+            <p class="hero-sub">Hybrid strength, running, and conditioning built into one progression system. Earn XP, climb the ranks, and train like it actually matters.</p>
+            <div class="hero-cta-group">
+                <a href="https://play.google.com/store/apps/details?id=com.valhallahybr.app" target="_blank" rel="noopener" class="download-btn" aria-label="Download the app on Google Play — $14.99 per month">
+                    <img src="assets/join/btn-download.png" alt="">
+                </a>
+                <p class="hero-price"><strong>$14.99</strong>/month &middot; Cancel anytime &middot; 7-day guarantee</p>
+            </div>
         </div>
-        <h1 class="sr-only">Train Like You Mean It.</h1>
-        <p class="sr-only">Hybrid strength, running, and conditioning built into one progression system. $14.99/month. Instant download on Google Play, cancel anytime, 7-day guarantee.</p>
     </section>
 
     <!-- ════════════════════════════════════════════════════
