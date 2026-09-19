@@ -313,6 +313,9 @@ a {
 .hero-strip {
   position: absolute;
 }
+.cta-split-strip.hero-strip {
+  display: none;
+}
 @media (min-width: 1024px) {
   .hero-side-list,
   .hero-built-different {
@@ -320,6 +323,9 @@ a {
   }
   .hero-built-different {
     display: block;
+  }
+  .cta-split-strip.hero-strip {
+    display: flex;
   }
 }
 .btn-gold {
@@ -854,6 +860,35 @@ a {
   border-color: var(--gold-bright);
   color: var(--gold-bright);
 }
+
+/* ── APP DOWNLOAD BUTTON (image, used for every CTA that leads to the app) ── */
+.btn-download {
+  display: inline-block;
+  line-height: 0;
+  transition: transform 0.2s ease;
+}
+.btn-download:hover {
+  transform: translateY(-2px);
+}
+.btn-download img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.btn-download-nav {
+  width: 152px;
+}
+.btn-download-sm {
+  margin-top: 16px;
+  width: 200px;
+  max-width: 100%;
+}
+.btn-download-cta {
+  margin-top: 28px;
+  width: 300px;
+  max-width: 100%;
+}
+
 .footer-bottom {
   border-top: 1px solid var(--surface-2);
   padding: 32px 0;
