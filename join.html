@@ -1144,6 +1144,70 @@
             font-size: 1.05rem;
         }
 
+        .community-label {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .community-label::before,
+        .community-label::after {
+            content: '';
+            width: 40px;
+            height: 1px;
+            background: var(--gold-dim);
+        }
+
+        .community-features {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .community-feature {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .community-feature svg {
+            width: 30px;
+            height: 30px;
+            stroke: var(--gold);
+        }
+
+        .community-feature span {
+            font-family: var(--font-display);
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--gray-300);
+        }
+
+        .community-feature-divider {
+            width: 1px;
+            height: 36px;
+            background: var(--gray-800);
+        }
+
+        .community-caption {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: var(--gray-400);
+        }
+
+        @media (max-width: 480px) {
+            .community-features { gap: 16px; }
+            .community-feature-divider { display: none; }
+        }
+
         /* ════════════════════════════════════════════════════
            LEADER — who leads the squad
            ════════════════════════════════════════════════════ */
@@ -1818,14 +1882,33 @@
         <div class="community-bg"></div>
         <div class="community-overlay"></div>
         <div class="community-content">
-            <span class="label">The Platoon</span>
-            <h2 class="heading-xl">Join the<br><span class="text-gold">squad.</span></h2>
+            <p class="community-label"><span class="label" style="margin-bottom: 0">The Platoon</span></p>
+            <h2 class="heading-xl">You don&rsquo;t train alone.<br><span class="text-gold">You rise with the squad.</span></h2>
             <p class="body-text">
-                People who train together evolve together. Join the group, meet the fighters, compete, and move up the ranks with the squad.
+                Compete, stay accountable, and move through the ranks alongside people committed to becoming stronger every day.
             </p>
+
+            <div class="community-features">
+                <div class="community-feature">
+                    <svg viewBox="0 0 256 256" fill="none" stroke-width="14"><path d="M128 28l80 28v56c0 64-36 100-80 116-44-16-80-52-80-116V56Z" stroke-linejoin="round"/><path d="M92 128l24 24 48-48" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <span>Accountability</span>
+                </div>
+                <div class="community-feature-divider"></div>
+                <div class="community-feature">
+                    <svg viewBox="0 0 256 256" fill="var(--gold)" stroke="none"><path d="M100 32L44 132h34l-18 76 92-108h-38z"/><path d="M156 32l56 100h-34l18 76-92-108h38z"/></svg>
+                    <span>Friendly Competition</span>
+                </div>
+                <div class="community-feature-divider"></div>
+                <div class="community-feature">
+                    <svg viewBox="0 0 256 256" fill="none" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"><path d="M64 72l64 48 64-48"/><path d="M64 116l64 48 64-48"/><path d="M64 160l64 48 64-48"/></svg>
+                    <span>Shared Progress</span>
+                </div>
+            </div>
+
             <a href="https://play.google.com/store/apps/details?id=com.valhallahybr.app" target="_blank" rel="noopener" class="download-btn" style="margin: 0 auto;" aria-label="Download the app on Google Play">
                 <img src="assets/join/btn-download.png" alt="">
             </a>
+            <p class="community-caption">Join the squad. Earn your place.</p>
         </div>
     </section>
 
