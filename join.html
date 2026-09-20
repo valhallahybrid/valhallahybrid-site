@@ -273,54 +273,166 @@
         }
 
         /* ════════════════════════════════════════════════════
-           PROBLEM — psychological hook
+           PROBLEM — photo background, ready for the image to
+           be dropped in as .problem-bg
            ════════════════════════════════════════════════════ */
         .problem {
+            position: relative;
             padding: 100px 0 80px;
             background: var(--black);
             text-align: center;
+            overflow: hidden;
         }
 
-        .problem-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2px;
-            margin-top: 64px;
+        .problem-bg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
         }
 
-        .problem-card {
-            background: var(--gray-950);
-            padding: 48px 28px;
+        .problem-scrim {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, var(--black) 0%, rgba(0, 0, 0, 0.5) 18%, rgba(0, 0, 0, 0.68) 88%, var(--black) 100%);
+            z-index: 1;
+        }
+
+        .problem .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .problem-label {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+        }
+
+        .problem-label::before,
+        .problem-label::after {
+            content: '';
+            width: 40px;
+            height: 1px;
+            background: var(--gold-dim);
+        }
+
+        .problem-timeline {
+            position: relative;
+            max-width: 640px;
+            margin: 64px auto 0;
             text-align: left;
-            transition: background 0.3s;
         }
 
-        .problem-card:hover { background: var(--gray-900); }
-
-        .problem-card .num {
-            font-family: var(--font-display);
-            font-size: 0.7rem;
-            font-weight: 600;
-            letter-spacing: 3px;
-            color: var(--gold-dim);
-            margin-bottom: 20px;
-            display: block;
+        .problem-timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            bottom: 8px;
+            width: 1px;
+            background: var(--gold-dim);
         }
 
-        .problem-card h3 {
+        .problem-item {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            padding: 28px 28px 28px 40px;
+            margin-bottom: 24px;
+            margin-left: 20px;
+            background: rgba(13, 13, 13, 0.75);
+            border: 1px solid var(--gray-800);
+            border-radius: 6px;
+        }
+
+        .problem-item:last-child { margin-bottom: 0; }
+
+        .problem-item::before {
+            content: '';
+            position: absolute;
+            left: -25px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--gold);
+        }
+
+        .problem-item .num {
             font-family: var(--font-display);
-            font-size: 1.15rem;
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: var(--gray-800);
+            flex-shrink: 0;
+            line-height: 1;
+        }
+
+        .problem-icon {
+            flex-shrink: 0;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .problem-icon svg {
+            width: 34px;
+            height: 34px;
+            stroke: var(--gold);
+        }
+
+        .problem-item h3 {
+            font-family: var(--font-display);
+            font-size: 1.05rem;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             line-height: 1.25;
         }
 
-        .problem-card p {
-            font-size: 0.9rem;
+        .problem-rule {
+            width: 28px;
+            height: 1px;
+            background: var(--gold-dim);
+            margin-bottom: 10px;
+        }
+
+        .problem-item p {
+            font-size: 0.88rem;
             color: var(--gray-500);
-            line-height: 1.7;
+            line-height: 1.6;
+        }
+
+        .problem-arrow {
+            display: block;
+            width: 26px;
+            height: 26px;
+            margin: 48px auto 0;
+            stroke: var(--gold-dim);
+        }
+
+        .problem-close {
+            margin-top: 20px;
+            font-family: var(--font-display);
+            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        @media (max-width: 480px) {
+            .problem-item { gap: 16px; padding: 24px 20px 24px 20px; }
+            .problem-item .num { font-size: 1.8rem; }
+            .problem-icon { width: 32px; height: 32px; }
+            .problem-icon svg { width: 26px; height: 26px; }
         }
 
         /* ════════════════════════════════════════════════════
@@ -1099,26 +1211,48 @@
          ════════════════════════════════════════════════════ -->
     <section class="problem">
         <div class="container">
-            <span class="label">The Problem</span>
-            <h2 class="heading-lg">Have you ever felt like you<br><span class="text-gold">train hard and still stall?</span></h2>
+            <p class="problem-label"><span class="label" style="margin-bottom: 0">The Problem</span></p>
+            <h2 class="heading-lg">You train hard.<br><span class="text-gold">But are you moving forward?</span></h2>
 
-            <div class="problem-grid">
-                <div class="problem-card">
+            <div class="problem-timeline">
+                <div class="problem-item">
                     <span class="num">01</span>
-                    <h3>Training without direction</h3>
-                    <p>You show up, do random work, and leave without knowing if you actually got better. No system, no progression.</p>
+                    <div class="problem-icon">
+                        <svg viewBox="0 0 256 256" fill="none" stroke-width="12"><circle cx="128" cy="128" r="92"/><path d="M92 164l24-72 72-24-24 72Z" stroke-linejoin="round"/><circle cx="128" cy="128" r="8" fill="var(--gold)" stroke="none"/></svg>
+                    </div>
+                    <div>
+                        <h3>Training Without Direction</h3>
+                        <div class="problem-rule"></div>
+                        <p>Random workouts create effort, not progress. Without a system, you never know what is actually working.</p>
+                    </div>
                 </div>
-                <div class="problem-card">
+                <div class="problem-item">
                     <span class="num">02</span>
-                    <h3>Strength without stamina</h3>
-                    <p>You can lift, but you gas out fast. Strong on paper, underprepared in real life.</p>
+                    <div class="problem-icon">
+                        <svg viewBox="0 0 256 256" fill="none" stroke-width="12"><rect x="24" y="104" width="24" height="48" rx="4"/><rect x="208" y="104" width="24" height="48" rx="4"/><path d="M48 128h24M184 128h24" stroke-linecap="round"/><path d="M72 128h20l14-32 20 56 16-40 10 16h32" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                    <div>
+                        <h3>Strength Without Stamina</h3>
+                        <div class="problem-rule"></div>
+                        <p>You can lift, but you gas out fast. Strong in the gym should also mean capable in real life.</p>
+                    </div>
                 </div>
-                <div class="problem-card">
+                <div class="problem-item">
                     <span class="num">03</span>
-                    <h3>No community</h3>
-                    <p>You train alone with nobody pushing you forward. The first hard week hits and you drop off again.</p>
+                    <div class="problem-icon">
+                        <svg viewBox="0 0 256 256" fill="none" stroke-width="12"><circle cx="52" cy="88" r="24"/><path d="M16 200c4-32 20-48 36-48s32 16 36 48" stroke-linecap="round"/><line x1="112" y1="60" x2="112" y2="204"/><circle cx="164" cy="84" r="18"/><circle cx="204" cy="84" r="18"/><circle cx="184" cy="68" r="18"/><path d="M140 200c4-24 18-36 44-36s40 12 44 36" stroke-linecap="round"/></svg>
+                    </div>
+                    <div>
+                        <h3>No Accountability</h3>
+                        <div class="problem-rule"></div>
+                        <p>Training alone makes consistency fragile. When motivation fades, progress stops.</p>
+                    </div>
                 </div>
             </div>
+
+            <svg class="problem-arrow" viewBox="0 0 256 256" fill="none" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"><path d="M64 88l64 56 64-56"/><path d="M64 144l64 56 64-56"/></svg>
+
+            <p class="problem-close"><span class="text-gold">Valhalla</span> was built to solve all three.</p>
         </div>
     </section>
 
