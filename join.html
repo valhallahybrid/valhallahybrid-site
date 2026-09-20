@@ -352,6 +352,150 @@
         }
 
         /* ════════════════════════════════════════════════════
+           WHY IT EXISTS — photo background, ready for the
+           image to be dropped in as .why-exists-bg
+           ════════════════════════════════════════════════════ */
+        .why-exists {
+            position: relative;
+            padding: 120px 16px 100px;
+            background: var(--black);
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .why-exists-bg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            z-index: 0;
+        }
+
+        .why-exists-scrim {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, var(--black) 0%, rgba(0, 0, 0, 0.55) 32%, rgba(0, 0, 0, 0.6) 72%, var(--black) 100%);
+            z-index: 1;
+        }
+
+        .why-exists-content {
+            position: relative;
+            z-index: 2;
+            max-width: 760px;
+            margin: 0 auto;
+        }
+
+        .why-exists-label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 24px;
+        }
+
+        .why-exists-label::before,
+        .why-exists-label::after {
+            content: '';
+            width: 40px;
+            height: 1px;
+            background: var(--gold-dim);
+        }
+
+        .why-exists-title {
+            font-family: var(--font-display);
+            font-size: clamp(1.8rem, 4.5vw, 2.8rem);
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            line-height: 1.2;
+            margin-bottom: 24px;
+        }
+
+        .why-exists-sub {
+            font-size: 1rem;
+            color: var(--gray-400);
+            line-height: 1.8;
+            max-width: 620px;
+            margin: 0 auto 32px;
+        }
+
+        .why-exists-tagline {
+            font-family: var(--font-display);
+            font-size: 0.95rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 56px;
+        }
+
+        .why-exists-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            text-align: center;
+        }
+
+        .why-exists-item {
+            border: 1px solid var(--gray-800);
+            border-radius: 4px;
+            padding: 36px 24px;
+            background: rgba(0, 0, 0, 0.35);
+        }
+
+        .why-exists-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--gold-dim);
+            border-radius: 50%;
+        }
+
+        .why-exists-icon svg {
+            width: 28px;
+            height: 28px;
+            stroke: var(--gold);
+        }
+
+        .why-exists-item h3 {
+            font-family: var(--font-display);
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+        }
+
+        .why-exists-rule {
+            width: 28px;
+            height: 1px;
+            background: var(--gold-dim);
+            margin: 0 auto 14px;
+        }
+
+        .why-exists-item p {
+            font-size: 0.85rem;
+            color: var(--gray-500);
+            line-height: 1.6;
+        }
+
+        @media (max-width: 640px) {
+            .why-exists { padding: 80px 16px 64px; }
+            .why-exists-grid { grid-template-columns: 1fr; gap: 16px; }
+        }
+
+        /* ════════════════════════════════════════════════════
            HOW IT WORKS
            ════════════════════════════════════════════════════ */
         .how {
@@ -890,22 +1034,38 @@
     <!-- ════════════════════════════════════════════════════
          EMOTIONAL HOOK — the why
          ════════════════════════════════════════════════════ -->
-    <section class="promise">
-        <div class="container">
-            <div class="promise-box">
-                <span class="label">Why It Exists</span>
-                <p class="big-text">
-                    You want to be the man who<br>
-                    <span class="text-gold">shows up when your family needs you.</span><br>
-                    Not the guy who runs out of gas climbing stairs.
-                </p>
-                <div class="divider" style="margin: 32px auto;"></div>
-                <p class="body-text">
-                    Valhalla Hybrid is not just another workout app. It is a hybrid training system — functional training, strength, running, and cardio — built to turn discipline into measurable progress.
-                </p>
-                <p class="body-text">
-                    Every session earns XP. Every XP moves you toward a higher rank. Every rank proves you kept showing up.
-                </p>
+    <section class="why-exists">
+        <div class="why-exists-content">
+            <p class="why-exists-label">Why Valhalla Exists</p>
+            <h2 class="why-exists-title">Build the <span class="text-gold">strength</span> to show up<br>when <span class="text-gold">life demands more.</span></h2>
+            <p class="why-exists-sub">Valhalla Hybrid combines strength, running, and conditioning into one structured progression system, so you can build a capable body without choosing between muscle and endurance.</p>
+            <p class="why-exists-tagline">Train. Earn XP. Rise through the ranks.</p>
+
+            <div class="why-exists-grid">
+                <div class="why-exists-item">
+                    <div class="why-exists-icon">
+                        <svg viewBox="0 0 256 256" fill="none" stroke-width="12"><rect x="96" y="112" width="64" height="32" rx="4"/><rect x="48" y="96" width="28" height="64" rx="6"/><rect x="180" y="96" width="28" height="64" rx="6"/><path d="M76 128H48M208 128h-28" stroke-linecap="round"/></svg>
+                    </div>
+                    <h3>Build Strength</h3>
+                    <div class="why-exists-rule"></div>
+                    <p>Structured functional workouts</p>
+                </div>
+                <div class="why-exists-item">
+                    <div class="why-exists-icon">
+                        <svg viewBox="0 0 256 256" fill="none" stroke-width="12"><circle cx="176" cy="56" r="16" fill="var(--gold)" stroke="none"/><path d="M56 208l40-52 40 16 32-48M88 132l28-36 44 8 32 44" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                    <h3>Develop Endurance</h3>
+                    <div class="why-exists-rule"></div>
+                    <p>Running and conditioning</p>
+                </div>
+                <div class="why-exists-item">
+                    <div class="why-exists-icon">
+                        <svg viewBox="0 0 256 256" fill="none" stroke-width="12"><circle cx="128" cy="156" r="56"/><path d="M104 106 76 40h32l20 44M152 106l28-66h-32l-20 44" stroke-linecap="round" stroke-linejoin="round"/><path d="M108 158l14 14 28-32" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                    <h3>Earn Your Rank</h3>
+                    <div class="why-exists-rule"></div>
+                    <p>XP, medals and progression</p>
+                </div>
             </div>
         </div>
     </section>
