@@ -1217,32 +1217,9 @@
         }
 
         .leader-layout {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: center;
-        }
-
-        .leader-photo {
-            position: relative;
-        }
-
-        .leader-photo img {
-            width: 100%;
-            height: auto;
-            display: block;
-            filter: brightness(0.9) contrast(1.05);
-        }
-
-        .leader-photo::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 120px;
-            background: linear-gradient(to top, var(--black), transparent);
-            pointer-events: none;
+            max-width: 640px;
+            margin: 0 auto;
+            text-align: center;
         }
 
         .leader-text .label {
@@ -1289,6 +1266,7 @@
         .leader-creds {
             display: flex;
             flex-direction: column;
+            align-items: center;
             gap: 12px;
         }
 
@@ -1506,11 +1484,7 @@
            MOBILE
            ════════════════════════════════════════════════════ */
         @media (max-width: 900px) {
-            .problem-grid,
             .how-grid { grid-template-columns: 1fr; }
-            .ranks-layout { grid-template-columns: 1fr; gap: 48px; }
-            .leader-layout { grid-template-columns: 1fr; gap: 48px; }
-            .leader-photo::after { display: none; }
         }
 
         @media (max-width: 640px) {
@@ -1918,9 +1892,6 @@
     <section class="leader">
         <div class="container">
             <div class="leader-layout">
-                <div class="leader-photo">
-                    <img src="assets/join/lider-fundador.jpeg" alt="Rui Gabriel Bueno Santos — Founder of Valhalla Hybrid">
-                </div>
                 <div class="leader-text">
                     <span class="label">Who Leads</span>
                     <h2 class="name">Rui Bueno</h2>
