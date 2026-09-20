@@ -1217,9 +1217,18 @@
         }
 
         .leader-layout {
-            max-width: 640px;
-            margin: 0 auto;
-            text-align: center;
+            display: grid;
+            grid-template-columns: 1fr 1.3fr;
+            gap: 64px;
+            align-items: center;
+        }
+
+        .leader-photo img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 4px;
+            filter: brightness(0.95) contrast(1.05);
         }
 
         .leader-text .label {
@@ -1228,12 +1237,12 @@
 
         .leader-text .name {
             font-family: var(--font-display);
-            font-size: clamp(1.6rem, 3vw, 2.2rem);
+            font-size: clamp(2.4rem, 5vw, 3.6rem);
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            line-height: 1.15;
-            margin-bottom: 8px;
+            letter-spacing: 1px;
+            line-height: 1.05;
+            margin-bottom: 10px;
         }
 
         .leader-text .role {
@@ -1260,38 +1269,66 @@
             font-size: 0.95rem;
             color: var(--gray-400);
             line-height: 1.8;
+            margin-bottom: 32px;
+        }
+
+        .leader-divider {
+            height: 1px;
+            background: var(--gray-800);
             margin-bottom: 28px;
         }
 
-        .leader-creds {
+        .leader-creds-row {
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 12px;
+            align-items: flex-start;
+            gap: 20px;
+            margin-bottom: 28px;
         }
 
-        .leader-cred {
+        .leader-cred-item {
             display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 0.85rem;
+            align-items: flex-start;
+            gap: 10px;
+            flex: 1;
+        }
+
+        .leader-cred-item svg {
+            flex-shrink: 0;
+            width: 20px;
+            height: 20px;
+            stroke: var(--gold);
+            margin-top: 2px;
+        }
+
+        .leader-cred-item span {
+            font-family: var(--font-display);
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
             color: var(--gray-400);
+            line-height: 1.5;
         }
 
-        .leader-cred .dot {
-            width: 6px;
-            height: 6px;
-            background: var(--gold);
+        .leader-cred-divider {
+            width: 1px;
+            align-self: stretch;
+            background: var(--gray-800);
             flex-shrink: 0;
         }
 
         .leader-signature {
-            margin-top: 36px;
             font-family: var(--font-display);
             font-size: 0.75rem;
             letter-spacing: 4px;
             text-transform: uppercase;
-            color: var(--gray-600);
+            color: var(--gold-dim);
+        }
+
+        @media (max-width: 900px) {
+            .leader-layout { grid-template-columns: 1fr; gap: 40px; }
+            .leader-creds-row { flex-direction: column; }
+            .leader-cred-divider { display: none; }
         }
 
         /* ════════════════════════════════════════════════════
@@ -1892,39 +1929,44 @@
     <section class="leader">
         <div class="container">
             <div class="leader-layout">
+                <div class="leader-photo">
+                    <img src="assets/join/leader-founder.jpg" alt="Rui Bueno, founder of Valhalla Hybrid">
+                </div>
                 <div class="leader-text">
                     <span class="label">Who Leads</span>
                     <h2 class="name">Rui Bueno</h2>
-                    <p class="role" data-i18n="leader-role">Founder & Creator of Valhalla Hybrid</p>
+                    <p class="role" data-i18n="leader-role">Founder &amp; Creator of Valhalla Hybrid</p>
 
                     <p class="leader-quote">
-                        "I built Valhalla Hybrid because training without a system is just wasted effort."
+                        "I built Valhalla Hybrid because training without a system is wasted effort."
                     </p>
 
                     <p class="leader-bio">
-                        Valhalla Hybrid came out of practice — years of training, testing methods, and realizing that most people do not lack motivation, they lack a system that actually turns discipline into results.
+                        Valhalla Hybrid was built through years of training, coaching, testing, and refining a system that combines strength, endurance, and measurable progression.
                     </p>
 
-                    <div class="leader-creds">
-                        <div class="leader-cred">
-                            <span class="dot"></span>
-                            <span>Hybrid training specialist</span>
+                    <div class="leader-divider"></div>
+
+                    <div class="leader-creds-row">
+                        <div class="leader-cred-item">
+                            <svg viewBox="0 0 256 256" fill="none" stroke-width="16" stroke-linecap="round"><path d="M56 200V136M128 200V88M200 200v-72"/></svg>
+                            <span>Hybrid Performance Specialist</span>
                         </div>
-                        <div class="leader-cred">
-                            <span class="dot"></span>
-                            <span>Creator of the Valhalla progression method</span>
+                        <div class="leader-cred-divider"></div>
+                        <div class="leader-cred-item">
+                            <svg viewBox="0 0 256 256" fill="none" stroke-width="14"><circle cx="128" cy="128" r="32"/><path d="M128 68v-24M128 212v-24M68 128H44M212 128h-24M84 84L67 67M172 172l17 17M172 84l17-17M84 172l-17 17" stroke-linecap="round"/></svg>
+                            <span>Creator Of The Valhalla Progression System</span>
                         </div>
-                        <div class="leader-cred">
-                            <span class="dot"></span>
-                            <span>Experience in strength, running, and conditioning</span>
-                        </div>
-                        <div class="leader-cred">
-                            <span class="dot"></span>
-                            <span>Leader of the Unbroken Spirits squad</span>
+                        <div class="leader-cred-divider"></div>
+                        <div class="leader-cred-item">
+                            <svg viewBox="0 0 256 256" fill="none" stroke-width="14"><circle cx="176" cy="56" r="16" fill="var(--gold)" stroke="none"/><path d="M56 208l40-52 40 16 32-48M88 132l28-36 44 8 32 44" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            <span>Strength &bull; Running &bull; Conditioning</span>
                         </div>
                     </div>
 
-                    <p class="leader-signature">— Unbroken Spirit</p>
+                    <div class="leader-divider"></div>
+
+                    <p class="leader-signature">Athlete &bull; Coach &bull; System Creator</p>
                 </div>
             </div>
         </div>
