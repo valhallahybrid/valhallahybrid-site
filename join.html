@@ -496,50 +496,115 @@
         }
 
         /* ════════════════════════════════════════════════════
-           HOW IT WORKS
+           HOW IT WORKS — photo background, ready for the image
+           to be dropped in as .how-bg
            ════════════════════════════════════════════════════ */
         .how {
+            position: relative;
             padding: 100px 0;
             background: var(--black);
+            overflow: hidden;
+        }
+
+        .how-bg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+
+        .how-scrim {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, var(--black) 0%, rgba(0, 0, 0, 0.55) 26%, rgba(0, 0, 0, 0.78) 100%);
+            z-index: 1;
+        }
+
+        .how .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .how-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .how-label::after {
+            content: '';
+            width: 40px;
+            height: 1px;
+            background: var(--gold-dim);
+        }
+
+        .how-sub {
+            color: var(--gray-400);
+            font-size: 1rem;
+            line-height: 1.7;
+            max-width: 480px;
+            margin-top: 16px;
         }
 
         .how-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
             margin-top: 56px;
         }
 
         .how-card {
-            background: var(--gray-950);
-            padding: 52px 32px;
-            text-align: center;
-            transition: background 0.3s;
+            background: rgba(13, 13, 13, 0.72);
+            border: 1px solid var(--gray-800);
+            border-radius: 6px;
+            padding: 36px 32px;
+            transition: border-color 0.3s;
         }
 
-        .how-card:hover { background: var(--gray-900); }
+        .how-card:hover { border-color: var(--gold-dim); }
+
+        .how-card .num {
+            display: block;
+            font-family: var(--font-display);
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: var(--gray-600);
+            margin-bottom: 20px;
+        }
 
         .how-icon {
-            width: 64px;
-            height: 64px;
-            margin: 0 auto 28px;
+            width: 68px;
+            height: 68px;
+            margin-bottom: 24px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 2px solid var(--gray-800);
-            font-size: 1.6rem;
+            border: 1px solid var(--gold-dim);
+            border-radius: 50%;
         }
 
-        .how-card:hover .how-icon {
-            border-color: var(--gold-dim);
+        .how-icon svg {
+            width: 30px;
+            height: 30px;
+            stroke: var(--gold);
         }
 
         .how-card h3 {
             font-family: var(--font-display);
-            font-size: 1.2rem;
+            font-size: 1.15rem;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
+            margin-bottom: 14px;
+        }
+
+        .how-rule {
+            width: 28px;
+            height: 1px;
+            background: var(--gold-dim);
             margin-bottom: 14px;
         }
 
@@ -548,6 +613,32 @@
             color: var(--gray-500);
             line-height: 1.7;
         }
+
+        .how-footline {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 56px;
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold-dim);
+            text-align: center;
+            line-height: 1.8;
+        }
+
+        .how-footline::before,
+        .how-footline::after {
+            content: '';
+            width: 40px;
+            height: 1px;
+            background: var(--gray-800);
+            flex-shrink: 0;
+        }
+
 
         /* ════════════════════════════════════════════════════
            RANKS — military progression
@@ -1077,31 +1168,50 @@
          ════════════════════════════════════════════════════ -->
     <section class="how">
         <div class="container">
-            <span class="label">How It Works</span>
-            <h2 class="heading-lg">Three pillars.<br><span class="text-gold">One system.</span></h2>
+            <div class="how-label"><span class="label" style="margin-bottom: 0">How It Works</span></div>
+            <h2 class="heading-lg">Four pillars.<br><span class="text-gold">One system.</span></h2>
+            <p class="how-sub">Everything you need to train, track, progress, and stay accountable.</p>
 
-            <div class="how-grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));">
+            <div class="how-grid">
                 <div class="how-card">
-                    <div class="how-icon">⚡</div>
+                    <span class="num">01</span>
+                    <div class="how-icon">
+                        <svg viewBox="0 0 256 256" fill="none" stroke-width="12"><rect x="40" y="108" width="26" height="40" rx="4"/><rect x="190" y="108" width="26" height="40" rx="4"/><path d="M66 128h124" stroke-linecap="round"/><path d="M146 92l-30 40h20l-16 36 42-46h-20z" fill="var(--gold)" stroke="none"/></svg>
+                    </div>
                     <h3>Hybrid Workouts</h3>
-                    <p>Functional training, strength, running, and cardio blended into a single session. You do not just get better at one thing — you get ready for anything.</p>
+                    <div class="how-rule"></div>
+                    <p>Strength, running, and conditioning combined into one complete training system.</p>
                 </div>
                 <div class="how-card">
-                    <div class="how-icon">📱</div>
+                    <span class="num">02</span>
+                    <div class="how-icon">
+                        <svg viewBox="0 0 256 256" fill="none" stroke-width="12"><rect x="80" y="76" width="96" height="104" rx="20"/><path d="M96 76V52h64v24M96 180v24h64v-24" stroke-linecap="round"/><path d="M96 128h20l12-24 16 40 14-28 10 12h20" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
                     <h3>Wearable Sync</h3>
-                    <p>Connect Garmin, Apple Watch, or Google Fit. Every step and calorie automatically feeds your XP and rank progression — zero manual entry.</p>
+                    <div class="how-rule"></div>
+                    <p>Connect Garmin, Apple Watch, or Google Fit. Your activity updates your XP automatically.</p>
                 </div>
                 <div class="how-card">
-                    <div class="how-icon">🎖️</div>
-                    <h3>XP & Ranks</h3>
-                    <p>Every completed mission earns XP based on the challenge level. Stack XP, climb the ranks, unlock medals.</p>
+                    <span class="num">03</span>
+                    <div class="how-icon">
+                        <svg viewBox="0 0 256 256" fill="none" stroke-width="12"><path d="M84 60l44 28 44-28M84 92l44 28 44-28" stroke-linecap="round" stroke-linejoin="round"/><circle cx="128" cy="176" r="48"/><path d="M110 176l14 14 24-28" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                    <h3>XP &amp; Ranks</h3>
+                    <div class="how-rule"></div>
+                    <p>Complete missions, earn XP, climb the ranks, and unlock medals.</p>
                 </div>
                 <div class="how-card">
-                    <div class="how-icon">🛡️</div>
+                    <span class="num">04</span>
+                    <div class="how-icon">
+                        <svg viewBox="0 0 256 256" fill="none" stroke-width="12"><path d="M128 28l80 28v56c0 64-36 100-80 116-44-16-80-52-80-116V56Z" stroke-linejoin="round"/><circle cx="102" cy="104" r="14"/><circle cx="154" cy="104" r="14"/><circle cx="128" cy="88" r="14"/><path d="M78 158c6-20 18-30 50-30s44 10 50 30" stroke-linecap="round"/></svg>
+                    </div>
                     <h3>The Squad</h3>
-                    <p>Join a tight group of fighters who train, compete, and level up together. No one is left behind.</p>
+                    <div class="how-rule"></div>
+                    <p>Train with a committed community that competes, supports, and progresses together.</p>
                 </div>
             </div>
+
+            <p class="how-footline">More Than Fitness<br>A Stronger You</p>
         </div>
     </section>
 
