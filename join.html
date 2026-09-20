@@ -753,73 +753,346 @@
 
 
         /* ════════════════════════════════════════════════════
-           RANKS — military progression
+           RANKS — Your Path To Elite. Photo background ready,
+           drop an <img class="ranks-bg"> + .ranks-scrim in when
+           the photo arrives.
            ════════════════════════════════════════════════════ */
         .ranks {
+            position: relative;
             padding: 100px 0;
             background: var(--gray-950);
+            overflow: hidden;
         }
 
-        .ranks-layout {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: center;
-            margin-top: 56px;
+        .ranks-bg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
         }
 
-        .rank-list {
+        .ranks-scrim {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, var(--gray-950) 0%, rgba(13, 13, 13, 0.55) 14%, rgba(13, 13, 13, 0.72) 92%, var(--gray-950) 100%);
+            z-index: 1;
+        }
+
+        .ranks .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .ranks-header {
+            text-align: center;
+            max-width: 640px;
+            margin: 0 auto 40px;
+        }
+
+        .ranks-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 6vw, 3.2rem);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--gold);
+            margin-bottom: 10px;
+        }
+
+        .ranks-subtitle {
+            font-family: var(--font-display);
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--white);
+            margin-bottom: 16px;
+        }
+
+        .ranks-desc {
+            color: var(--gray-500);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .ranks-progress {
+            max-width: 640px;
+            margin: 32px auto 56px;
+            background: var(--gray-900);
+            border: 1px solid var(--gray-800);
+            border-radius: 8px;
+            padding: 20px 24px;
+        }
+
+        .ranks-progress-top {
             display: flex;
-            flex-direction: column;
+            justify-content: space-between;
+            font-family: var(--font-display);
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: var(--gold);
+            margin-bottom: 10px;
         }
 
-        .rank-item {
+        .ranks-progress-bar {
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: var(--gray-800);
+            overflow: hidden;
+        }
+
+        .ranks-progress-fill {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--gray-600), var(--gold), var(--gold-bright));
+        }
+
+        .rank-timeline {
+            position: relative;
+            max-width: 640px;
+            margin: 0 auto;
+        }
+
+        .rank-timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            bottom: 8px;
+            width: 1px;
+            background: var(--gold-dim);
+        }
+
+        .rank-badge {
+            position: relative;
             display: flex;
-            align-items: center;
-            gap: 20px;
-            padding: 18px 24px;
-            border-left: 3px solid var(--gray-800);
-            transition: all 0.3s;
+            align-items: flex-start;
+            gap: 18px;
+            padding: 20px 22px;
+            margin-bottom: 16px;
+            margin-left: 20px;
+            background: rgba(13, 13, 13, 0.72);
+            border: 1px solid var(--gray-800);
+            border-radius: 6px;
         }
 
-        .rank-item:hover {
-            border-left-color: var(--gold);
-            background: rgba(201, 168, 76, 0.03);
-        }
+        .rank-badge:last-child { margin-bottom: 0; }
 
-        .rank-icon {
-            width: 48px;
-            height: 48px;
+        .rank-badge::before {
+            content: '';
+            position: absolute;
+            left: -25px;
+            top: 26px;
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
+            background: var(--gold);
+        }
+
+        .rank-badge-icon {
+            flex-shrink: 0;
+            width: 44px;
+            height: 44px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.3rem;
-            flex-shrink: 0;
-            border: 2px solid var(--gray-800);
-            background: var(--gray-950);
+            border: 1px solid var(--gold-dim);
+            border-radius: 50%;
+            background: rgba(201, 168, 76, 0.08);
         }
 
-        .rank-item:hover .rank-icon {
-            border-color: var(--gold-dim);
+        .rank-badge-icon svg {
+            width: 22px;
+            height: 22px;
+            stroke: var(--gold);
         }
 
-        .rank-info h4 {
+        .rank-badge-body { flex: 1; min-width: 0; }
+
+        .rank-badge-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 6px;
+        }
+
+        .rank-badge-top h4 {
             font-family: var(--font-display);
             font-size: 1rem;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
         }
 
-        .rank-info p {
-            font-size: 0.82rem;
+        .rank-xp-pill {
+            flex-shrink: 0;
+            font-family: var(--font-display);
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            color: var(--gold);
+            border: 1px solid var(--gold-dim);
+            border-radius: 20px;
+            padding: 4px 12px;
+            white-space: nowrap;
+        }
+
+        .rank-badge-body p {
+            font-size: 0.88rem;
             color: var(--gray-500);
-            margin-top: 3px;
+            line-height: 1.6;
+            margin-bottom: 8px;
         }
 
-        .ranks-text .body-text {
-            margin-bottom: 20px;
+        .rank-unlock {
+            font-family: var(--font-display);
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            color: var(--gray-600);
+        }
+
+        .rank-badge.elite {
+            border-color: rgba(201, 168, 76, 0.4);
+            background: rgba(201, 168, 76, 0.06);
+        }
+
+        .rank-badge.elite .rank-badge-icon { background: rgba(201, 168, 76, 0.2); }
+        .rank-badge.elite .rank-badge-top h4 { color: var(--gold); }
+        .rank-badge.elite .rank-unlock { color: var(--gold); }
+
+        /* ════════════════════════════════════════════════════
+           PROGRESSION CTA — after the rank ladder. Photo
+           background ready, drop an <img class="progression-bg">
+           + .progression-scrim in when the photo arrives.
+           ════════════════════════════════════════════════════ */
+        .progression {
+            position: relative;
+            padding: 100px 0;
+            background: var(--black);
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .progression-bg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+
+        .progression-scrim {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, var(--black) 0%, rgba(0, 0, 0, 0.55) 20%, rgba(0, 0, 0, 0.72) 90%, var(--black) 100%);
+            z-index: 1;
+        }
+
+        .progression .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .progression-label {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .progression-label::before,
+        .progression-label::after {
+            content: '';
+            width: 40px;
+            height: 1px;
+            background: var(--gold-dim);
+        }
+
+        .progression-title {
+            font-family: var(--font-display);
+            font-size: clamp(1.8rem, 4.5vw, 2.8rem);
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            line-height: 1.2;
+            margin-bottom: 24px;
+        }
+
+        .progression-sub {
+            font-size: 1rem;
+            color: var(--gray-400);
+            line-height: 1.8;
+            max-width: 560px;
+            margin: 0 auto 48px;
+        }
+
+        .progression-steps {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 48px;
+        }
+
+        .progression-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .progression-step-icon {
+            width: 56px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--gold-dim);
+            border-radius: 50%;
+        }
+
+        .progression-step-icon svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--gold);
+        }
+
+        .progression-step span {
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--gray-400);
+        }
+
+        .progression-step-divider {
+            width: 40px;
+            height: 1px;
+            background: var(--gray-800);
+            margin-bottom: 26px;
+        }
+
+        .progression-caption {
+            margin-top: 16px;
+            font-size: 0.85rem;
+            color: var(--gray-500);
+        }
+
+        @media (max-width: 480px) {
+            .progression-steps { gap: 10px; }
+            .progression-step-divider { width: 20px; }
+            .progression-step-icon { width: 44px; height: 44px; }
         }
 
         /* ════════════════════════════════════════════════════
@@ -1356,147 +1629,183 @@
          ════════════════════════════════════════════════════ -->
     <section class="ranks">
         <div class="container">
-            <div class="ranks-layout">
-                <div class="rank-list">
-                    <!-- Progress Bar Header -->
-                    <div style="background: #161616; border: 1px solid #2a2a2a; padding: 20px; border-radius: 8px; margin-bottom: 25px;">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                            <span style="color: #d4af37; font-size: 0.85rem; font-weight: bold; letter-spacing: 1px;">XP LADDER PROGRESSION</span>
-                            <span style="color: #888; font-size: 0.8rem;">0 XP ➔ 6,500+ XP</span>
-                        </div>
-                        <div style="width: 100%; background: #222; height: 8px; border-radius: 4px; overflow: hidden;">
-                            <div style="width: 100%; background: linear-gradient(90deg, #888, #d4af37, #ffcc00); height: 100%;"></div>
-                        </div>
-                        <p style="color: #aaa; font-size: 0.8rem; margin-top: 10px;">Every workout earned increases your XP. Clear milestones to unlock ranks, medals, and elite status.</p>
+            <div class="ranks-header">
+                <p class="ranks-title">Your Path To Elite</p>
+                <p class="ranks-subtitle">XP Ladder Progression</p>
+                <p class="ranks-desc">Every workout earns XP. Complete missions, unlock ranks, and prove your consistency.</p>
+                <div class="ranks-progress">
+                    <div class="ranks-progress-top">
+                        <span>0 XP</span>
+                        <span>6,500+ XP</span>
                     </div>
-
-                    <!-- Ranks Grid / List -->
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px;">
-                        <div class="rank-item" style="background: #121212; border: 1px solid #222; padding: 18px; border-radius: 6px; display: flex; align-items: flex-start; gap: 15px;">
-                            <div class="rank-icon" style="font-size: 1.5rem; background: rgba(212,175,55,0.1); padding: 10px; border-radius: 6px;">🎖️</div>
-                            <div class="rank-info" style="flex: 1;">
-                                <div style="display: flex; justify-content: space-between; align-items: center;">
-                                    <h4 style="color: #fff; font-size: 1rem; margin-bottom: 2px;">Recruit</h4>
-                                    <span style="color: #d4af37; font-size: 0.75rem; font-weight: bold;">0 – 199 XP</span>
-                                </div>
-                                <p style="color: #aaa; font-size: 0.85rem; margin-bottom: 6px;">First steps in the barracks. Lock in the basics.</p>
-                                <span style="color: #666; font-size: 0.75rem;">Unlocked: Basic Training Badge</span>
-                            </div>
-                        </div>
-
-                        <div class="rank-item" style="background: #121212; border: 1px solid #222; padding: 18px; border-radius: 6px; display: flex; align-items: flex-start; gap: 15px;">
-                            <div class="rank-icon" style="font-size: 1.5rem; background: rgba(212,175,55,0.1); padding: 10px; border-radius: 6px;">🛡️</div>
-                            <div class="rank-info" style="flex: 1;">
-                                <div style="display: flex; justify-content: space-between; align-items: center;">
-                                    <h4 style="color: #fff; font-size: 1rem; margin-bottom: 2px;">Private</h4>
-                                    <span style="color: #d4af37; font-size: 0.75rem; font-weight: bold;">200 – 499 XP</span>
-                                </div>
-                                <p style="color: #aaa; font-size: 0.85rem; margin-bottom: 6px;">Learning the training base and building stamina.</p>
-                                <span style="color: #666; font-size: 0.75rem;">Unlocked: 5 Workouts Completed Badge</span>
-                            </div>
-                        </div>
-
-                        <div class="rank-item" style="background: #121212; border: 1px solid #222; padding: 18px; border-radius: 6px; display: flex; align-items: flex-start; gap: 15px;">
-                            <div class="rank-icon" style="font-size: 1.5rem; background: rgba(212,175,55,0.1); padding: 10px; border-radius: 6px;">⚔️</div>
-                            <div class="rank-info" style="flex: 1;">
-                                <div style="display: flex; justify-content: space-between; align-items: center;">
-                                    <h4 style="color: #fff; font-size: 1rem; margin-bottom: 2px;">Corporal</h4>
-                                    <span style="color: #d4af37; font-size: 0.75rem; font-weight: bold;">500 – 999 XP</span>
-                                </div>
-                                <p style="color: #aaa; font-size: 0.85rem; margin-bottom: 6px;">Earning the first stripes. Consistency takes over.</p>
-                                <span style="color: #666; font-size: 0.75rem;">Unlocked: 15 Workouts Streak Badge</span>
-                            </div>
-                        </div>
-
-                        <div class="rank-item" style="background: #121212; border: 1px solid #222; padding: 18px; border-radius: 6px; display: flex; align-items: flex-start; gap: 15px;">
-                            <div class="rank-icon" style="font-size: 1.5rem; background: rgba(212,175,55,0.1); padding: 10px; border-radius: 6px;">🎯</div>
-                            <div class="rank-info" style="flex: 1;">
-                                <div style="display: flex; justify-content: space-between; align-items: center;">
-                                    <h4 style="color: #fff; font-size: 1rem; margin-bottom: 2px;">Sergeant</h4>
-                                    <span style="color: #d4af37; font-size: 0.75rem; font-weight: bold;">1,000 – 1,499 XP</span>
-                                </div>
-                                <p style="color: #aaa; font-size: 0.85rem; margin-bottom: 6px;">Leading initial squads. Discipline is now a habit.</p>
-                                <span style="color: #666; font-size: 0.75rem;">Unlocked: Full Track Completion Badge</span>
-                            </div>
-                        </div>
-
-                        <div class="rank-item" style="background: #121212; border: 1px solid #222; padding: 18px; border-radius: 6px; display: flex; align-items: flex-start; gap: 15px;">
-                            <div class="rank-icon" style="font-size: 1.5rem; background: rgba(212,175,55,0.1); padding: 10px; border-radius: 6px;">🎖️</div>
-                            <div class="rank-info" style="flex: 1;">
-                                <div style="display: flex; justify-content: space-between; align-items: center;">
-                                    <h4 style="color: #fff; font-size: 1rem; margin-bottom: 2px;">Master Sergeant</h4>
-                                    <span style="color: #d4af37; font-size: 0.75rem; font-weight: bold;">1,500 – 1,999 XP</span>
-                                </div>
-                                <p style="color: #aaa; font-size: 0.85rem; margin-bottom: 6px;">Troop veteran. Unbreakable physical standard.</p>
-                                <span style="color: #666; font-size: 0.75rem;">Unlocked: Iron Stamina Badge</span>
-                            </div>
-                        </div>
-
-                        <div class="rank-item" style="background: #121212; border: 1px solid #222; padding: 18px; border-radius: 6px; display: flex; align-items: flex-start; gap: 15px;">
-                            <div class="rank-icon" style="font-size: 1.5rem; background: rgba(212,175,55,0.1); padding: 10px; border-radius: 6px;">⭐</div>
-                            <div class="rank-info" style="flex: 1;">
-                                <div style="display: flex; justify-content: space-between; align-items: center;">
-                                    <h4 style="color: #fff; font-size: 1rem; margin-bottom: 2px;">Lieutenant</h4>
-                                    <span style="color: #d4af37; font-size: 0.75rem; font-weight: bold;">2,000 – 2,999 XP</span>
-                                </div>
-                                <p style="color: #aaa; font-size: 0.85rem; margin-bottom: 6px;">Entering the officer corps. Advanced hybrid mastery.</p>
-                                <span style="color: #666; font-size: 0.75rem;">Unlocked: Officer Status & Elite Badge</span>
-                            </div>
-                        </div>
-
-                        <div class="rank-item" style="background: #121212; border: 1px solid #222; padding: 18px; border-radius: 6px; display: flex; align-items: flex-start; gap: 15px;">
-                            <div class="rank-icon" style="font-size: 1.5rem; background: rgba(212,175,55,0.1); padding: 10px; border-radius: 6px;">⭐</div>
-                            <div class="rank-info" style="flex: 1;">
-                                <div style="display: flex; justify-content: space-between; align-items: center;">
-                                    <h4 style="color: #fff; font-size: 1rem; margin-bottom: 2px;">Captain</h4>
-                                    <span style="color: #d4af37; font-size: 0.75rem; font-weight: bold;">3,000 – 4,499 XP</span>
-                                </div>
-                                <p style="color: #aaa; font-size: 0.85rem; margin-bottom: 6px;">Leading companies. Peak conditioning reached.</p>
-                                <span style="color: #666; font-size: 0.75rem;">Unlocked: Commander Medal of Honor</span>
-                            </div>
-                        </div>
-
-                        <div class="rank-item" style="background: #121212; border: 1px solid #222; padding: 18px; border-radius: 6px; display: flex; align-items: flex-start; gap: 15px;">
-                            <div class="rank-icon" style="font-size: 1.5rem; background: rgba(212,175,55,0.1); padding: 10px; border-radius: 6px;">👑</div>
-                            <div class="rank-info" style="flex: 1;">
-                                <div style="display: flex; justify-content: space-between; align-items: center;">
-                                    <h4 style="color: #fff; font-size: 1rem; margin-bottom: 2px;">Commander</h4>
-                                    <span style="color: #d4af37; font-size: 0.75rem; font-weight: bold;">4,500 – 6,499 XP</span>
-                                </div>
-                                <p style="color: #aaa; font-size: 0.85rem; margin-bottom: 6px;">Inspiring and guiding warriors across all squads.</p>
-                                <span style="color: #666; font-size: 0.75rem;">Unlocked: General Staff Badge</span>
-                            </div>
-                        </div>
-
-                        <div class="rank-item" style="background: #121212; border: 1px solid #222; padding: 18px; border-radius: 6px; display: flex; align-items: flex-start; gap: 15px; border-color: rgba(212,175,55,0.3);">
-                            <div class="rank-icon" style="font-size: 1.5rem; background: rgba(212,175,55,0.2); padding: 10px; border-radius: 6px;">⚡</div>
-                            <div class="rank-info" style="flex: 1;">
-                                <div style="display: flex; justify-content: space-between; align-items: center;">
-                                    <h4 style="color: #d4af37; font-size: 1rem; margin-bottom: 2px;">Einherjar</h4>
-                                    <span style="color: #d4af37; font-size: 0.75rem; font-weight: bold;">6,500+ XP</span>
-                                </div>
-                                <p style="color: #aaa; font-size: 0.85rem; margin-bottom: 6px;">Elite warrior chosen by Odin. Unbroken peak.</p>
-                                <span style="color: #d4af37; font-size: 0.75rem; font-weight: bold;">Unlocked: Valhalla Legend Medal</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="ranks-text">
-                    <span class="label">Progression</span>
-                    <h2 class="heading-lg">Every rank is a<br><span class="text-gold">real milestone</span></h2>
-                    <div class="divider"></div>
-                    <p class="body-text">
-                        In Valhalla Hybrid, no workout goes to waste. Counted sessions push you up the ladder. Each rank is proof that you stayed in the fight.
-                    </p>
-                    <p class="body-text">
-                        The progression system is built to keep you focused, consistent, and moving forward — like a game that never stops rewarding discipline.
-                    </p>
-                    <a href="#pricing" class="btn-outline" style="margin-top: 32px;">
-                        START NOW
-                    </a>
+                    <div class="ranks-progress-bar"><div class="ranks-progress-fill"></div></div>
                 </div>
             </div>
+
+            <div class="rank-timeline">
+                <div class="rank-badge">
+                    <div class="rank-badge-icon">
+                        <svg viewBox="0 0 256 256" fill="none" stroke-width="14"><circle cx="128" cy="156" r="52"/><path d="M104 108 76 40h32l20 44M152 108l28-68h-32l-20 44" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                    <div class="rank-badge-body">
+                        <div class="rank-badge-top">
+                            <h4>Recruit</h4>
+                            <span class="rank-xp-pill">0–199 XP</span>
+                        </div>
+                        <p>First steps in the barracks. Lock in the basics.</p>
+                        <span class="rank-unlock">Unlock: Basic Training Badge</span>
+                    </div>
+                </div>
+
+                <div class="rank-badge">
+                    <div class="rank-badge-icon">
+                        <svg viewBox="0 0 256 256" fill="none" stroke-width="14"><path d="M128 28l80 28v56c0 64-36 100-80 116-44-16-80-52-80-116V56Z" stroke-linejoin="round"/></svg>
+                    </div>
+                    <div class="rank-badge-body">
+                        <div class="rank-badge-top">
+                            <h4>Private</h4>
+                            <span class="rank-xp-pill">200–499 XP</span>
+                        </div>
+                        <p>Build the training base and establish discipline.</p>
+                        <span class="rank-unlock">Unlock: 5 Workouts Completed Badge</span>
+                    </div>
+                </div>
+
+                <div class="rank-badge">
+                    <div class="rank-badge-icon">
+                        <svg viewBox="0 0 256 256" fill="none" stroke-width="14" stroke-linecap="round"><path d="M48 48l160 160M208 48L48 208"/></svg>
+                    </div>
+                    <div class="rank-badge-body">
+                        <div class="rank-badge-top">
+                            <h4>Corporal</h4>
+                            <span class="rank-xp-pill">500–999 XP</span>
+                        </div>
+                        <p>Consistency takes command.</p>
+                        <span class="rank-unlock">Unlock: 15-Workout Streak Badge</span>
+                    </div>
+                </div>
+
+                <div class="rank-badge">
+                    <div class="rank-badge-icon">
+                        <svg viewBox="0 0 256 256" fill="none" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"><path d="M64 84l64 48 64-48M64 128l64 48 64-48"/></svg>
+                    </div>
+                    <div class="rank-badge-body">
+                        <div class="rank-badge-top">
+                            <h4>Sergeant</h4>
+                            <span class="rank-xp-pill">1,000–1,499 XP</span>
+                        </div>
+                        <p>Lead through action. Discipline becomes habit.</p>
+                        <span class="rank-unlock">Unlock: Full Track Completion Badge</span>
+                    </div>
+                </div>
+
+                <div class="rank-badge">
+                    <div class="rank-badge-icon">
+                        <svg viewBox="0 0 256 256" fill="none" stroke-width="14"><path d="M128 24l30 74 80 6-62 52 20 78-68-44-68 44 20-78-62-52 80-6Z" stroke-linejoin="round"/></svg>
+                    </div>
+                    <div class="rank-badge-body">
+                        <div class="rank-badge-top">
+                            <h4>Master Sergeant</h4>
+                            <span class="rank-xp-pill">1,500–1,999 XP</span>
+                        </div>
+                        <p>Unbreakable physical standards.</p>
+                        <span class="rank-unlock">Unlock: Iron Stamina Badge</span>
+                    </div>
+                </div>
+
+                <div class="rank-badge">
+                    <div class="rank-badge-icon">
+                        <svg viewBox="0 0 256 256" fill="none" stroke-width="14"><path d="M128 24l30 74 80 6-62 52 20 78-68-44-68 44 20-78-62-52 80-6Z" stroke-linejoin="round"/></svg>
+                    </div>
+                    <div class="rank-badge-body">
+                        <div class="rank-badge-top">
+                            <h4>Lieutenant</h4>
+                            <span class="rank-xp-pill">2,000–2,999 XP</span>
+                        </div>
+                        <p>Advanced hybrid mastery.</p>
+                        <span class="rank-unlock">Unlock: Officer Status &amp; Elite Badge</span>
+                    </div>
+                </div>
+
+                <div class="rank-badge">
+                    <div class="rank-badge-icon">
+                        <svg viewBox="0 0 256 256" fill="none" stroke-width="14"><path d="M128 24l30 74 80 6-62 52 20 78-68-44-68 44 20-78-62-52 80-6Z" stroke-linejoin="round"/></svg>
+                    </div>
+                    <div class="rank-badge-body">
+                        <div class="rank-badge-top">
+                            <h4>Captain</h4>
+                            <span class="rank-xp-pill">3,000–4,499 XP</span>
+                        </div>
+                        <p>Lead with complete performance.</p>
+                        <span class="rank-unlock">Unlock: Commander Medal</span>
+                    </div>
+                </div>
+
+                <div class="rank-badge">
+                    <div class="rank-badge-icon">
+                        <svg viewBox="0 0 256 256" fill="var(--gold)" stroke="none"><path d="M40 96l40 32 48-56 48 56 40-32 12 96H28Z"/></svg>
+                    </div>
+                    <div class="rank-badge-body">
+                        <div class="rank-badge-top">
+                            <h4>Commander</h4>
+                            <span class="rank-xp-pill">4,500–6,499 XP</span>
+                        </div>
+                        <p>Inspire and guide the entire squad.</p>
+                        <span class="rank-unlock">Unlock: General Staff Badge</span>
+                    </div>
+                </div>
+
+                <div class="rank-badge elite">
+                    <div class="rank-badge-icon">
+                        <svg viewBox="0 0 256 256" fill="var(--gold)" stroke="none"><path d="M138 24L64 144h48l-16 88 90-120h-52z"/></svg>
+                    </div>
+                    <div class="rank-badge-body">
+                        <div class="rank-badge-top">
+                            <h4>Einherjar</h4>
+                            <span class="rank-xp-pill">6,500+ XP</span>
+                        </div>
+                        <p>Elite warrior chosen by Odin. Unbroken peak.</p>
+                        <span class="rank-unlock">Unlock: Valhalla Legend Medal</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════════════
+         PROGRESSION CTA
+         ════════════════════════════════════════════════════ -->
+    <section class="progression">
+        <div class="container">
+            <p class="progression-label"><span class="label" style="margin-bottom: 0">Progression</span></p>
+            <h2 class="progression-title">Every workout counts.<br><span class="text-gold">Every rank is earned.</span></h2>
+            <p class="progression-sub">Valhalla turns consistency into visible progress. Complete your training, earn XP, unlock new ranks, and build proof that you kept showing up.</p>
+
+            <div class="progression-steps">
+                <div class="progression-step">
+                    <div class="progression-step-icon">
+                        <svg viewBox="0 0 256 256" fill="none" stroke-width="14"><rect x="24" y="104" width="24" height="48" rx="4"/><rect x="208" y="104" width="24" height="48" rx="4"/><path d="M48 128h160" stroke-linecap="round"/></svg>
+                    </div>
+                    <span>Show Up</span>
+                </div>
+                <div class="progression-step-divider"></div>
+                <div class="progression-step">
+                    <div class="progression-step-icon">
+                        <svg viewBox="0 0 256 256" fill="none" stroke-width="14"><path d="M32 128h48l24-56 32 112 24-72 20 16h44" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                    <span>Earn XP</span>
+                </div>
+                <div class="progression-step-divider"></div>
+                <div class="progression-step">
+                    <div class="progression-step-icon">
+                        <svg viewBox="0 0 256 256" fill="none" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"><path d="M64 148l64-56 64 56"/></svg>
+                    </div>
+                    <span>Rise In Rank</span>
+                </div>
+            </div>
+
+            <a href="#pricing" class="btn-gold" style="display: inline-flex; width: auto; max-width: none; padding: 18px 48px">Start Your First Mission</a>
+            <p class="progression-caption">Your next rank begins with your next workout.</p>
         </div>
     </section>
 
